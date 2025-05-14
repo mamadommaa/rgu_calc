@@ -39,7 +39,9 @@
   <div class="converter">
     <label for="type">Что переводим?</label>
     <select id="type">
-      <option value="m-km">Метры → Километры</option>
+      <option value="cm-m">Сантиметры → Метры</option>
+      <option value="g-kg">Граммы → Килограммы</option>
+      <option value="c-f">Цельсий → Фаренгейт</option>
     </select>
 
     <label for="value">Введите значение:</label>
@@ -63,10 +65,19 @@
 
       let result;
 
+
       switch (type) {
-        case "m-km":
+        case "cm-m":
+          result = value / 100;
+          resultEl.textContent = `${value} см = ${result} м`;
+          break;
+        case "g-kg":
           result = value / 1000;
-          resultEl.textContent = `${value} м = ${result} км`;
+          resultEl.textContent = `${value} г = ${result} кг`;
+          break;
+        case "c-f":
+          result = (value * 9 / 5) + 32;
+          resultEl.textContent = `${value} °C = ${result.toFixed(2)} °F`;
           break;
         default:
           resultEl.textContent = "Ошибка: неизвестный тип.";
